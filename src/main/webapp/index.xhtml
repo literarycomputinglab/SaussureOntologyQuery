@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>bobbemalle</title>
+    </head>
+
+    <body>
+        <ui:composition template="templates/BasicTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <br />
+                <h:form id="selectLanguage" style="float: right;">
+                    <h:outputText id="ddd" value="#{msgs.seleziona_lingua}"
+                                  style="font-size:15px; font:bold;" />
+                    <p:commandLink rendered="true">
+                        <h:graphicImage value="images/separatorIcon.png" title="sep" />
+                    </p:commandLink>
+                    <p:commandLink id="langIt" update="langIt,langFr,langEn,ddd,:Domanda_1,:Domanda_2,:Domanda_3,:Domanda_4,:risposte"
+                                   action="#{language.countryLocaleCodeChanged('it')}"
+                                   disabled="#{language.selectedLanguage == 'it'}">
+                        <h:graphicImage value="images/italianFlagIcon.png" title="it"
+                                        style="vertical-align: middle !important;" />
+                    </p:commandLink>
+                    <p:commandLink rendered="true">
+                        <h:graphicImage value="images/separatorIcon.png" title="sep" />
+                    </p:commandLink>
+                </h:form>
+
+                <br />
+                <br />
+
+
+                <p:scrollPanel id="basic" style="height:480px" mode="native">
+                    <br />
+                    <h:form styleClass="colHeader" id="Domanda_1">
+                        <p:growl id="growl" showDetail="true" sticky="false" life="8000" />
+                        <p:fieldset styleClass="ui-fieldset-legend"
+                                    legend="Requête portant sur les relations sémantiques ou sur les propriétés associées à un terme"
+                                    toggleable="true" toggleSpeed="500" collapsed="true">
+                            <!-- 					<h:graphicImage value="images/separatorIcon.png" /> -->
+                            <br />
+                            <br />
+                            Quelles sont 
+                            <p:selectOneMenu styleClass="menu" panelStyleClass="panel"
+                                             value="#{saussure.query_1_param_1}"
+                                             valueChangeListener="#{saussure.query_1_propertyChanged}">
+                                <p:ajax listener="#{saussure.q_1_p_1Changed}" update="q1p2" />
+                                <f:selectItem itemValue="ObjectProperty"
+                                              itemLabel="les relations sémantiques" />
+                                <f:selectItem itemValue="DatatypeProperty"
+                                              itemLabel="les propriétés" />
+                            </p:selectOneMenu> auxquelles est lié le terme <p:selectOneMenu styleClass="menu"
+                                                                                            value="#{saussure.query_1_param_2}" id="q1p2" filter="true"
+                                                                                            filterMatchMode="startsWith" effect="fade">
+                                <f:selectItems value="#{saussure.instances}" var="c"
+                                               itemLabel="#{c}" itemValue="#{c}" />
+                            </p:selectOneMenu> ? 
+                            <p:commandButton value="Exécute la requête" icon="ui-icon-search"
+                                             update=":risposte, growl" onstart="blockUI.show()"
+                                             oncomplete="blockUI.hide()"
+                                             actionListener="#{saussure.runQuery_1}"
+                                             styleClass="toolButtonRight">
+                            </p:commandButton>
+                            <br />
+                            <br />
+                        </p:fieldset>
+                    </h:form>
+
+                    <br />
+                    <h:form styleClass="colHeader" id="Domanda_2">
+                        <p:growl id="growl" showDetail="true" sticky="false" life="8000" />
+                        <p:fieldset styleClass="ui-fieldset-legend"
+                                    legend="Requête portant sur les termes associés à une propriété"
+                                    toggleable="true" toggleSpeed="500" collapsed="true">
+                            <br />
+                            <br />
+                            Quels sont les termes caractérisés par la propriété <p:selectOneMenu
+                                styleClass="menu" value="#{saussure.query_2_param_1}"
+                                valueChangeListener="#{saussure.query_2_propertyChanged}">
+                                <p:ajax listener="#{saussure.q_2_p_1Changed}" update="q2p2, q2p3" />
+                                <f:selectItem itemValue="SemanticProperty" itemLabel="sémantique" />
+                                <f:selectItem itemValue="MorphosyntacticProperty"
+                                              itemLabel="morphologique" />
+                                <f:selectItem itemValue="TermUsageInformationProperty"
+                                              itemLabel="d'usage du terme" />
+                            </p:selectOneMenu> dont l'attribut est <p:selectOneMenu styleClass="menu"
+                                                                                    value="#{saussure.query_2_param_2}"
+                                                                                    valueChangeListener="#{saussure.query_2_attributeChanged}"
+                                                                                    id="q2p2">
+                                <p:ajax listener="#{saussure.q_2_p_2Changed}" update="q2p3" />
+                                <f:selectItems value="#{saussure.attributes}" var="c"
+                                               itemLabel="#{c}" itemValue="#{c}" />
+                            </p:selectOneMenu> et la valeur est <p:selectOneMenu styleClass="menu"
+                                                                                 value="#{saussure.query_2_param_3}" id="q2p3">
+                                <f:selectItems value="#{saussure.values}" var="c"
+                                               itemLabel="#{c}" itemValue="#{c}" />
+                            </p:selectOneMenu> ?
+                            <p:commandButton value="Exécute la requête" icon="ui-icon-search"
+                                             update=":risposte, growl" onstart="blockUI.show()"
+                                             oncomplete="blockUI.hide()"
+                                             actionListener="#{saussure.runQuery_2}"
+                                             styleClass="toolButtonRight">
+                            </p:commandButton>
+                            <!-- 					<h:graphicImage value="images/separatorIcon.png" /> -->
+                            <br />
+                            <br />
+                        </p:fieldset>
+                    </h:form>
+
+                    <br />
+                    <h:form styleClass="colHeader" id="Domanda_3">
+                        <p:growl id="growl" showDetail="true" sticky="false" life="8000" />
+                        <p:fieldset styleClass="ui-fieldset-legend"
+                                    legend="Requête portant sur les termes associés à une relation"
+                                    toggleable="true" toggleSpeed="500" collapsed="true">
+                            <br />
+                            <br />
+                            Quels sont les termes liés au terme <p:selectOneMenu
+                                styleClass="menu" value="#{saussure.query_3_param_1}"
+                                valueChangeListener="#{saussure.query_3_instanceChanged}"
+                                filter="true" filterMatchMode="startsWith" effect="fade">
+                                <p:ajax listener="#{saussure.q_3_p_1Changed}" update="q3p2" />
+                                <f:selectItems value="#{saussure.instances_2}" var="i"
+                                               itemLabel="#{i}" itemValue="#{i}" />
+                            </p:selectOneMenu> par la relation <p:selectOneMenu styleClass="menu"
+                                                                                value="#{saussure.query_3_param_2}" id="q3p2">
+                                <f:selectItems value="#{saussure.objRelations}" var="r"
+                                               itemLabel="#{r}" itemValue="#{r}" />
+                            </p:selectOneMenu> ? 
+                            <p:commandButton value="Exécute la requête" icon="ui-icon-search"
+                                             update=":risposte, growl" onstart="blockUI.show()"
+                                             oncomplete="blockUI.hide()"
+                                             actionListener="#{saussure.runQuery_3}"
+                                             styleClass="toolButtonRight">
+                            </p:commandButton>
+                            <!-- 					<h:graphicImage value="images/separatorIcon.png" /> -->
+                            <br />
+                            <br />
+                        </p:fieldset>
+                    </h:form>
+                    <br />
+
+                    <h:form styleClass="colHeader" id="Domanda_4">
+                        <p:growl id="growl" showDetail="true" sticky="false" life="8000" />
+                        <p:fieldset styleClass="ui-fieldset-legend"
+                                    legend="Requête portant sur les termes associés à ≥ 1 propriété et ≥ 1 relation"
+                                    toggleable="true" toggleSpeed="500" collapsed="true">
+                            <p:commandButton value="Exécute la requête" icon="ui-icon-search"
+                                             update=":risposte, growl" onstart="blockUI.show()"
+                                             oncomplete="blockUI.hide()"
+                                             actionListener="#{saussure.runQuery_4}"
+                                             disabled="#{!saussure.disabled}" styleClass="toolButtonRight">
+                            </p:commandButton>
+                            <br />Quels sont les termes caractérisés par:
+                            <br />
+
+                            <p:menuButton id="menu_constraints" value="Options"
+                                          styleClass="toolButtonRight_2">
+                                <p:menuitem value="Ajouter relation" style="font-size:11px"
+                                            disabled="#{!saussure.addRelationButton}" ajax="true"
+                                            actionListener="#{saussure.menuUpdater(1)}" update="Domanda_4"
+                                            icon="ui-icon-circle-plus">
+                                </p:menuitem>
+                                <p:menuitem value="Ajouter propriété" style="font-size:11px"
+                                            disabled="#{!saussure.addTraitButton}" ajax="true"
+                                            actionListener="#{saussure.menuUpdater(2)}" update="Domanda_4"
+                                            icon="ui-icon-circle-plus">
+                                </p:menuitem>
+                                <p:menuitem value="Supprimer relation" style="font-size:11px"
+                                            disabled="#{saussure.addRelationButton}" ajax="true"
+                                            actionListener="#{saussure.menuUpdater(3)}" update="Domanda_4"
+                                            icon="ui-icon-circle-minus">
+                                </p:menuitem>
+                                <p:menuitem value="Supprimer propriété" style="font-size:11px"
+                                            disabled="#{saussure.addTraitButton}" ajax="true"
+                                            actionListener="#{saussure.menuUpdater(4)}" update="Domanda_4"
+                                            icon="ui-icon-circle-minus">
+                                </p:menuitem>
+                            </p:menuButton>
+                            <br />
+                            <br />
+
+                            <h:outputLabel value="la relation sémantique "
+                                           style="padding-left:15px;" />
+                            <p:selectOneMenu styleClass="menu"
+                                             disabled="#{!saussure.addRelationButton || !saussure.addTraitButton}"
+                                             value="#{saussure.query_4_param_1}" id="q4p1"
+                                             valueChangeListener="#{saussure.query_4_propertyChanged}">
+                                <p:ajax listener="#{saussure.q_4_p_1Changed}"
+                                        update="q4p2, q4p3, q4p4" />
+                                <f:selectItems value="#{saussure.objRelations_2}" var="r"
+                                               itemLabel="#{r}" itemValue="#{r}" />
+                            </p:selectOneMenu> avec valeur <p:selectOneMenu styleClass="menu"
+                                                                            disabled="#{!saussure.addRelationButton || !saussure.addTraitButton}"
+                                                                            value="#{saussure.query_4_param_2}" id="q4p2"
+                                                                            valueChangeListener="#{saussure.query_4_valueChanged}">
+                                <p:ajax listener="#{saussure.q_4_p_2Changed}" update="q4p3, q4p4" />
+                                <f:selectItems value="#{saussure.instances_3}" var="i"
+                                               itemLabel="#{i}" itemValue="#{i}" />
+                            </p:selectOneMenu>
+
+                            <h:graphicImage id="constraint_1_img"
+                                            value="images/constraintIcon.png"
+                                            rendered="#{!saussure.addRelationButton}"
+                                            style="padding-left:30px; vertical-align: middle !important; padding-right: 8px;"
+                                            width="20" height="20" />
+                            <h:outputLabel id="constraint_1_lbl"
+                                           value=" la relation sémantique "
+                                           rendered="#{!saussure.addRelationButton}" />
+                            <p:selectOneMenu styleClass="menu"
+                                             disabled="#{saussure.addRelationForm}"
+                                             rendered="#{!saussure.addRelationButton}"
+                                             value="#{saussure.query_4_param_5}" id="q4p5"
+                                             valueChangeListener="#{saussure.query_4_propertyChanged_2}">
+                                <p:ajax listener="#{saussure.q_4_p_5Changed}" update="q4p6" />
+                                <f:selectItems value="#{saussure.relationAlternativeMap}" var="r"
+                                               itemLabel="#{r}" itemValue="#{r}" />
+                            </p:selectOneMenu>
+                            <h:outputLabel id="constraint_1_lbl_2" value=" avec valeur "
+                                           rendered="#{!saussure.addRelationButton}" />
+                            <p:selectOneMenu rendered="#{!saussure.addRelationButton}"
+                                             disabled="#{saussure.addRelationForm}" styleClass="menu"
+                                             value="#{saussure.query_4_param_6}" id="q4p6"
+                                             valueChangeListener="#{saussure.query_4_valueOfProperty_2Changed}">
+                                <!-- 						<p:ajax listener="#{saussure.q_4_p_2Changed}" update="" /> -->
+                                <f:selectItems value="#{saussure.valuesOfRelationAlternativeMap}"
+                                               var="i" itemLabel="#{i}" itemValue="#{i}" />
+                            </p:selectOneMenu>
+
+                            <br />
+                            <br />
+
+                            <h:outputLabel value="la propriété " style="padding-left:15px;" />
+                            <p:selectOneMenu styleClass="menu"
+                                             disabled="#{saussure.attribute_2isEmpty || !saussure.addRelationButton || !saussure.addTraitButton}"
+                                             value="#{saussure.query_4_param_3}" id="q4p3"
+                                             valueChangeListener="#{saussure.query_4_trattoChanged}">
+                                <p:ajax listener="#{saussure.q_4_p_3Changed}" update="q4p4" />
+                                <f:selectItems value="#{saussure.attribute_2}" var="a"
+                                               itemLabel="#{a}" itemValue="#{a}" />
+                            </p:selectOneMenu> avec valeur <p:selectOneMenu styleClass="menu"
+                                                                            disabled="#{saussure.value_2isEmpty || !saussure.addRelationButton || !saussure.addTraitButton}"
+                                                                            value="#{saussure.query_4_param_4}" id="q4p4">
+                                <f:selectItems value="#{saussure.value_2}" var="v"
+                                               itemLabel="#{v}" itemValue="#{v}" />
+                            </p:selectOneMenu>
+
+                            <h:graphicImage id="constraint_2_img"
+                                            rendered="#{!saussure.addTraitButton}"
+                                            value="images/constraintIcon.png"
+                                            style="padding-left:179px; vertical-align: middle !important; padding-right: 8px;"
+                                            width="20" height="20" />
+                            <h:outputLabel id="constraint_2_lbl"
+                                           rendered="#{!saussure.addTraitButton}" value=" la propriété " />
+                            <p:selectOneMenu rendered="#{!saussure.addTraitButton}"
+                                             disabled="#{saussure.addTraitForm}" styleClass="menu"
+                                             value="#{saussure.query_4_param_7}" id="q4p7"
+                                             valueChangeListener="#{saussure.query_4_trattoChanged_2}">
+                                <p:ajax listener="#{saussure.q_4_p_7Changed}" update="q4p8" />
+                                <f:selectItems value="#{saussure.trattoAlternativeMap}" var="a"
+                                               itemLabel="#{a}" itemValue="#{a}" />
+                            </p:selectOneMenu>
+                            <h:outputLabel id="constraint_2_lbl_2"
+                                           rendered="#{!saussure.addTraitButton}" value="avec valeur" />
+                            <p:selectOneMenu rendered="#{!saussure.addTraitButton}"
+                                             disabled="#{saussure.addTraitForm}" styleClass="menu"
+                                             value="#{saussure.query_4_param_8}" id="q4p8"
+                                             valueChangeListener="#{saussure.query_4_valueOfTratto_2Changed}">
+                                <f:selectItems value="#{saussure.valuesOfTrattoAlternativeMap}"
+                                               var="v" itemLabel="#{v}" itemValue="#{v}" />
+                            </p:selectOneMenu>
+
+                            <br />
+                        </p:fieldset>
+                    </h:form>
+
+
+                    <br />
+                    <h:form styleClass="colHeader" id="Domanda_5">
+                        <p:fieldset styleClass="ui-fieldset-legend"
+                                    legend="Affichage des termes par tag Cloud" toggleable="true"
+                                    toggleSpeed="500" collapsed="true">
+                            <br />
+                            <h:panelGrid columns="2" style="margin-bottom:10px"
+                                         cellpadding="5">
+
+                                <h:outputText value="Affiche les termes selon les rapports: " />
+                                <p:selectOneButton 
+                                    value="#{saussure.opt_Cloud}" id="tagCloudId"
+                                    valueChangeListener="#{saussure.opt_Cloud_Changed}">
+                                    <p:ajax listener="#{saussure.initializeTagCloud()}"
+                                            update="tCloud" />
+                                    <f:selectItems value="#{saussure.tagCloudOptions}" var="a"
+                                                   itemLabel="#{a}" itemValue="#{a}" />
+                                </p:selectOneButton>
+
+                            </h:panelGrid>
+                            <p:separator />
+                            <br />
+                            <center>
+                                <p:tagCloud id="tCloud" style="width: 950px;"
+                                            model="#{saussure.tagCloudModel}"></p:tagCloud>
+                            </center>
+                        </p:fieldset>
+                    </h:form>
+
+                    <br />
+
+                    <h:form>
+                        <div id="container">
+                            <div id="left-container">
+                                <div class="text">
+                                    <h4>Graph Operations</h4>
+
+                                    In this (advanced) example a static graph is fed into the
+                                    visualization.<br /> <br /> Custom Animations are triggered
+                                    when clicking on a node's label or when deleting a node.<br />
+                                    <br /> <b>Click on a node's label</b> to select a node and its
+                                    connections.<br /> <br /> <b>Click on the 'x' link</b> to
+                                    delete a node.<br /> <br /> You can <b>drag nodes</b> around
+                                    and <b>zoom</b> and <b>pan</b>, just like you did in the
+                                    previous example.
+                                </div>
+                                <div id="id-list"></div>
+                                <div style="text-align: center;">
+                                    <a href="example2.js">See the Example Code</a>
+                                </div>
+                            </div>
+                            <div id="center-container">
+                                <div id="infovis"></div>
+                            </div>
+                            <div id="right-container">
+                                <div id="inner-details"></div>
+                            </div>
+                            <div id="log"></div>
+                        </div>
+                    </h:form>
+                    <br />
+                </p:scrollPanel>
+                <br />
+                <center>
+                    <h:form id="risposte">
+                        <p:tabView styleClass="tabHeader" id="tabView">
+                            <p:tab title="Résultats de la requête"
+                                   closable="true">
+                                <p:menuButton value="Export" styleClass="toolButtonRight_2"
+                                              rendered="#{saussure.printButton}">
+                                    <p:menuitem value="Export (.pdf)" style="font-size:11px"
+                                                process="@this" partialSubmit="true"
+                                                onclick="PrimeFaces.monitorDownload(function () {
+                                                            blockUI.show();
+                                                        }, function () {
+                                                            blockUI.hide();
+                                                        })"
+                                                ajax="false" icon="ui-icon-print">
+                                        <p:fileDownload value="#{saussure.exportPDF()}" />
+                                    </p:menuitem>
+                                    <p:menuitem value="Export (.xml)" style="font-size:11px"
+                                                process="@this" partialSubmit="true" disabled="true"
+                                                onclick="PrimeFaces.monitorDownload(function () {
+                                                            blockUI.show();
+                                                        }, function () {
+                                                            blockUI.hide();
+                                                        })"
+                                                ajax="false" icon="ui-icon-print">
+                                        <p:fileDownload value="" />
+                                    </p:menuitem>
+                                </p:menuButton>
+                                <!-- 			 rowsPerPageTemplate="6,12,18" -->
+                                <p:dataTable styleClass="colHeader" var="res"
+                                             value="#{saussure.results}" style="width:80%" paginator="true"
+                                             rows="5" rowsPerPageTemplate="5, 10, 50, 100, 500"
+                                             paginatorTemplate=" {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rendered="#{saussure.results.size() != 0}" widgetVar="carsTable">
+                                    <p:columns styleClass="colHeader" value="#{saussure.columns}"
+                                               var="column" columnIndexVar="colIndex"
+                                               sortBy="#{res[column.property]}">
+                                        <f:facet name="header">  
+                                            #{column.header}  
+                                        </f:facet>    
+                                        #{res[column.property]}  
+                                    </p:columns>
+                                </p:dataTable>
+                            </p:tab>
+                        </p:tabView>
+                    </h:form>
+                </center>
+                <br />
+                <br />
+                <h:form>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

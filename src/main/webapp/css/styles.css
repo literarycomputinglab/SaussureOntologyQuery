@@ -1,0 +1,473 @@
+
+html {
+    font-family: Candara, Trebuchet MS, Arial, sans-serif;
+}
+
+#header {
+    width: 100%;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 48px;
+    background-color: navy;
+    color: white;
+}
+
+#footer {
+    width: 100%;
+    font-weight: bold;
+    background-color: navy;
+    color: white;
+}
+
+.sidemenu {
+    text-align: center;
+    vertical-align: top;
+    background-color: #E0E0E0;
+}
+
+.indent {
+    margin-left: 20px;
+}
+
+.sqlDialogText {
+    display: block;
+    width: 600px; 
+    height: 300px;
+    overflow: auto;
+}
+
+.result {
+    border: thin solid grey;
+    width: 350px;
+}
+
+.resultCaption {
+    font-weight: bolder;
+}
+
+.resultHeader {
+    text-align: center;
+    background: none repeat scroll 0 0;
+    padding: 5px;
+    background-color: #0F52BA
+}
+
+.resultFooter {
+    text-align: center;
+    background: none repeat scroll 0 0 grey;
+    padding: 2px;
+}
+
+.oddRow {
+    height: 14px;
+    text-align: center;
+    background-color: #9BDDFF;
+}
+
+.evenRow {
+    height: 14px;
+    text-align: center;
+    background-color: #72A0C1;
+}
+
+.tabHeader {
+    font-size: 14px;
+}
+
+.colHeader {
+    font-size: 12px;
+}
+
+.ui-fieldset .ui-fieldset-legend {
+    font-size: 12px;
+}
+
+.menu {
+    vertical-align: middle !important;
+}
+
+.ui-selectonemenu-items-wrapper {
+    font-size:	12px;
+}
+.menu .ui-selectonemenu-label { 
+
+}
+.panel .ui-selectonemenu-list { 
+
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter {
+    width: 100%;
+    padding-right:20px;
+    font-size: 12px;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter-container {
+    position: relative;
+    margin: 0;
+    padding: 0.1em;
+    display: inline-block;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter-container .ui-icon {
+    position: absolute;
+    top: 5px;
+    right: -45px;
+}
+
+.toolButtonRight {
+    font-size:12px !important; 
+    float: right;
+    height: 26px;
+}
+
+.toolButtonRight_2 {
+    font-size:12px !important; 
+    float: right;
+    padding-top:2px;
+}
+
+.toolButtonLeft {
+    /* 	font-size:12px !important;  */
+    float: center;
+}
+
+.toolButtonPrint {
+    font-size:12px !important; 
+    float: center;
+}
+
+.miaclasse {
+    background-color:#B0C4DE;
+    background-position:initial initial;
+    background-repeat:initial initial;
+    border-bottom-left-radius:200px;
+    border-bottom-right-radius:200px;
+    border-top-left-radius:200px;
+    border-top-right-radius:200px;
+    font-size:12px;
+    line-height:18px;
+    vertical-align: super;
+    width:16px;
+}
+
+.highlightInference {
+    background: #FF9966  !important ;
+
+}
+
+/*
+li { display:inline; }
+li:nth-child(4):after { content:"\A"; white-space:pre; }
+*/
+/*
+@CHARSET "UTF-8";
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  background-color: #eeeeee;
+  color: #444;
+  margin: 0;
+  padding: 0;
+  background-image: url(images/background.png);
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(images/ilc_bg.png);
+  background-repeat: no-repeat;
+  background-position: 95% 95%;
+  height: 100%;
+}
+
+p {
+        line-height: 1.3;	
+}
+
+.navbar {
+        background-image: url(images/navbar_bg.png);
+        background-repeat: repeat-x;
+        background-position: top left;
+        height: 44px;
+        width: 100%;
+        color: white;
+        font-size: 26px;
+        text-align: center;
+        text-shadow: 0px 3px rgba(1,1,1,0.3);
+}
+
+form {
+        display: inline;
+}
+
+.appButton {
+        background-image: url(images/appIcon.png);
+        background-repeat: no-repeat;
+        margin-top: 6px;
+        width: 42px;
+        height: 45px;
+        display: block;
+        float: left;
+        margin-left: 10px;
+}
+
+.logoutButton {
+        background-image: url(images/exit.png);
+        background-repeat: no-repeat;
+        margin-top: 4px;
+        width: 42px;
+        height: 45px;
+        display: block;
+        float: right;
+}
+
+.addUserIcon {
+        background-image: url(images/addUserIcon.png) !important;
+}
+
+#viewContent {
+        margin-left: 20px;
+        margin-right: 20px;
+}
+
+.sessionMenu {
+        font-size:14.5px; 
+        float: right;
+}
+
+.hebrewText {
+        direction: rtl;
+}
+
+.disabled {
+        color: lightgray;
+}
+
+td {
+        white-space: normal ! important;
+        line-height: 1.6;
+}
+
+td[role="gridcell"] p {
+        margin-left: 10px;
+        margin-right: 10px;
+}
+
+td[role="gridcell"] label {
+        margin-left: 10px;
+        margin-right: 10px;
+        vertical-align: center;
+}
+
+.ui-panelgrid {
+        border: hidden;
+}
+
+.ui-panelgrid td[role="gridcell"] {
+        padding: 2px !important;
+        min-width: 125px;
+}
+
+.clickable {
+        width: 100%; 
+        min-height: 20px;
+        cursor: pointer;
+}
+
+.noteTypePicker, .glossaryPicker {
+    border: 1px solid gray;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 13px;
+    margin-right: 6px;
+    width: 13px;
+    border-radius: 7px;
+}
+
+.labelColumn {
+        width: 129px;
+}
+.commandColumn {
+        width: 20px ! important;
+}
+
+.treeColumn {
+        width: 305px;
+        vertical-align:top;
+}
+
+.notesColumn {
+        width: 106px;
+}
+
+.dataColumn {
+        vertical-align: top;	
+        width: 100%;
+}
+
+.buttonColumn {
+        vertical-align: top;
+        font-size: 10px;
+        width: 50px;
+}
+
+.ui-accordion .ui-accordion-content {
+        padding: 0 !important;
+        overflow:visible !important;
+}
+
+.ui-panel .ui-panel-content {
+        padding: 0 !important;
+}
+
+input.ui-column-filter {
+        width: 100% !important;
+}
+
+.dataColumn.ui-panel {
+         border: medium none;
+    margin-top: -2px !important;
+    padding: 0 !important;
+}
+
+.alreadyTranslated {
+        color: #6d6;
+}
+
+.toBeTranslated {
+        color: #555;
+}
+
+.ui-layout-north, .ui-layout-north > .ui-layout-unit-content {
+        padding: 0 !important;
+}
+
+.ui-editor {
+        width: 100% !important;
+}
+
+.ui-editor .save-button {
+        
+}
+
+.toolButtonRight {
+        font-size:11px !important; 
+        float: right;
+}
+
+.toolButtonLeft {
+        font-size:11px !important; 
+        float: left;
+}
+
+h4 {
+        border-bottom: 2px solid lightgray; padding-bottom:2px;
+}
+
+.guideImage {
+        width: 100%;
+}
+
+.globalToolbarItem {
+        float: left; 
+        height: 32px;
+        padding-top: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+}
+
+.globalToolbarItem:hover {
+        background-color: rgba(255,255,255,0.5);
+        opacity: 0.8;
+}
+
+.formInputText {
+        width: 126px;
+}
+.formSelectOneMenu {
+        width: 162px;
+}
+
+.ui-layout-center {
+        height: 100% !importang;
+}
+
+.cellHeader {
+        display: block;
+    height: 22px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    background-color: #f0f0f0;
+    font-size: 12px;
+    clear: both;
+}
+.cellHeader:hover {
+        opacity: 0.4;
+}
+
+.half {
+        width: 47%;
+        vertical-align: top;
+}
+
+.suggestionList > div > a {
+        display: block;
+        padding: 5px;
+        padding-left: 10px;
+        text-decoration: none;
+}
+
+.suggestionList > div > a:hover {
+        text-decoration: underline;
+}
+
+.ui-state-highlight a {
+        text-shadow: none !important;
+}
+
+.dragDropCategory {
+        cursor: default;
+        font-weight: bold;
+}
+
+.dragDropItem {
+        font-style: italics;
+        cursor: move;
+}
+
+.dropHover {
+        background-color: #76D !important;
+}
+
+.dropActive {
+        border-radius: 5px;
+        padding-left: 5px;
+        margin-left: -5px;
+        padding-right: 5px;
+        background-color: #AAB;
+        color: white;
+        text-shadow: 1px 1px gray;
+        border: 1px dotted gray;
+}
+
+.originalTextBox {
+        margin-right: 10px;
+        margin-left: 5px;
+        display: block;
+}
+
+.revDialog {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: #eeeeee;
+  color: #444;
+}
+*/

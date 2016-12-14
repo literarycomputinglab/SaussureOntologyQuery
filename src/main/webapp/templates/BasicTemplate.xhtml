@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="../css/styles.css" />
+        <link type="text/css" href="../css/base.css" rel="stylesheet" />
+	<link type="text/css" href="../css/ForceDirected.css" rel="stylesheet" />
+	<script type="text/javascript" src="../js/jit.js"></script>
+        <script type="text/javascript" src="../js/example2.js"></script>
+
+	<title><ui:insert name="title">Saussure Lexicon Querying Interface</ui:insert></title>
+</h:head>
+<h:body onload="init();">
+	<p:blockUI widgetVar="blockUI" block=":content">
+		<strong>Caricamento</strong>
+                <img src="../images/ajax-loader.gif" />
+	</p:blockUI>
+	<h:panelGroup id="content" styleClass="content">
+
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="header.xhtml" />
+			</ui:insert>
+		</div>
+
+		<ui:insert name="content"></ui:insert>
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</div>
+	</h:panelGroup>
+
+	<script>
+
+	var wrap = function(functionToWrap, before, after, thisObject) {
+		return function() {
+			var args = Array.prototype.slice.call(arguments), result;
+			if (before)
+				before.apply(thisObject || this, args);
+			result = functionToWrap.apply(thisObject || this, args);
+			if (after)
+				after.apply(thisObject || this, args);
+			return result;
+		};
+	};
+	
+	$(document).ready(function() {
+		blockUI.show = wrap(blockUI.show, function() {}, function() {
+			$('.ui-blockui').width('100%').height('100%');
+			var c = $('.ui-blockui-content');
+			c.css('left', Math.round((c.parent().width()-c.width())/2)+'px');
+			c.css('top', Math.round(($(window).height()-c.height())/2)+'px');
+		});
+		$('.ui-blockui').appendTo('body').css('position','fixed');
+		$('.ui-blockui-content').appendTo('body').css('position','fixed').css('z-index', 1000000);
+	});
+	
+	</script>
+</h:body>
+</html>
