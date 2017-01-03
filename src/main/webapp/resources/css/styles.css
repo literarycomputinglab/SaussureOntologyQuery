@@ -1,0 +1,157 @@
+
+html {
+    font-family: Candara, Trebuchet MS, Arial, sans-serif;
+}
+
+#header {
+    width: 100%;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 48px;
+    background-color: navy;
+    color: white;
+}
+
+#footer {
+    width: 100%;
+    font-weight: bold;
+    background-color: navy;
+    color: white;
+}
+
+.sidemenu {
+    text-align: center;
+    vertical-align: top;
+    background-color: #E0E0E0;
+}
+
+.indent {
+    margin-left: 20px;
+}
+
+.sqlDialogText {
+    display: block;
+    width: 600px; 
+    height: 300px;
+    overflow: auto;
+}
+
+.result {
+    border: thin solid grey;
+    width: 350px;
+}
+
+.resultCaption {
+    font-weight: bolder;
+}
+
+.resultHeader {
+    text-align: center;
+    background: none repeat scroll 0 0;
+    padding: 5px;
+    background-color: #0F52BA
+}
+
+.resultFooter {
+    text-align: center;
+    background: none repeat scroll 0 0 grey;
+    padding: 2px;
+}
+
+.oddRow {
+    height: 14px;
+    text-align: center;
+    background-color: #9BDDFF;
+}
+
+.evenRow {
+    height: 14px;
+    text-align: center;
+    background-color: #72A0C1;
+}
+
+.tabHeader {
+    font-size: 14px;
+}
+
+.colHeader {
+    font-size: 12px;
+}
+
+.ui-fieldset .ui-fieldset-legend {
+    font-size: 12px;
+}
+
+.menu {
+    vertical-align: middle !important;
+}
+
+.ui-selectonemenu-items-wrapper {
+    font-size:	12px;
+}
+.menu .ui-selectonemenu-label { 
+
+}
+.panel .ui-selectonemenu-list { 
+
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter {
+    width: 100%;
+    padding-right:20px;
+    font-size: 12px;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter-container {
+    position: relative;
+    margin: 0;
+    padding: 0.1em;
+    display: inline-block;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter-container .ui-icon {
+    position: absolute;
+    top: 5px;
+    right: -45px;
+}
+
+.toolButtonRight {
+    font-size:12px !important; 
+    float: right;
+    height: 26px;
+}
+
+.toolButtonRight_2 {
+    font-size:12px !important; 
+    float: right;
+    padding-top:2px;
+}
+
+.toolButtonLeft {
+    /* 	font-size:12px !important;  */
+    float: center;
+}
+
+.toolButtonPrint {
+    font-size:12px !important; 
+    float: center;
+}
+
+.miaclasse {
+    background-color:#B0C4DE;
+    background-position:initial initial;
+    background-repeat:initial initial;
+    border-bottom-left-radius:200px;
+    border-bottom-right-radius:200px;
+    border-top-left-radius:200px;
+    border-top-right-radius:200px;
+    font-size:12px;
+    line-height:18px;
+    vertical-align: super;
+    width:16px;
+}
+
+.highlightInference {
+    background: #FF9966  !important ;
+
+}
